@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -f /opt/myproject/cron/semaphore-cron.block ]; then
+  echo '*** CRON ALREADY IN USE' `date` &>> /var/log/cron/cronlog
+else
+
+  echo 1 > /opt/myproject/cron/semaphore-cron.block
+
+  echo '********** INIT' `date` >> /var/log/lowpost/cronlog
+  echo '*** CRON' &>> /var/log/lowpost/cronlog
+  
+  # Actions to do
+
+  wait
+
+  rm /var/log/lowpost/cronlog
+fi
+
